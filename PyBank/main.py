@@ -10,19 +10,30 @@ with open(csvpath, newline='') as budgetFile:
 
     totalMonths = 0
     totalMoney = 0.0
-    greatProfits = 0
+
+    data= []
 
 
     for row in csvreader:
+        data.append(row)
         totalMonths += 1
         totalMoney += float(row[1])
 
-#make a list an empty list of all the values outside the loop, then loop through and add to list
-#and then do math outside the loo
-        '''if value > greatProfits:
-            greatProfits = value
-        else:
-            greatProfits = greatProfits'''
+        for x in data:
+            greatProfits = x[2]
+            
+
+'''
+for x in data:
+    totalMonths +=1
+    totalMoney += float(x[1])
+
+    greatProfits = float(x[1])
+    if float(x[1])>:
+        greatProfits = float(x[2][1])-float(x[1])
+    else:
+        greatProfits = greatProfits
+'''
 
 
 
