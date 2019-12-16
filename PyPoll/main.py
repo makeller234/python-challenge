@@ -3,8 +3,8 @@ import csv
 
 csvpath =os.path.join("..","PyPoll", "election_data.csv")
 
-with open(csvpath, newline='') as budgetFile:
-    csvreader = csv.reader(budgetFile, delimiter=',')
+with open(csvpath, newline='') as candidateFile:
+    csvreader = csv.reader(candidateFile, delimiter=',')
 
     csv_header = next(csvreader)
 
@@ -48,6 +48,8 @@ with open(csvpath, newline='') as budgetFile:
     candidate4Percent = "{:.3f}".format((candidate4/totalVotes)*100)
     print("Election Results")
     print("-------------------------")
+    print(f'Total Votes: {totalVotes}')
+    print("-------------------------")
     print(f'{candidates[0]}: {candidate1Percent}% ({candidate1})')
     print(f'{candidates[1]}: {candidate2Percent}% ({candidate2})')
     print(f'{candidates[2]}: {candidate3Percent}% ({candidate3})')
@@ -56,6 +58,21 @@ with open(csvpath, newline='') as budgetFile:
     print(f'Winner: {winner}')
     print("-------------------------")
 
+output_path = os.path.join("..", "PyPoll", "election_results.txt")
+
+
+with open(output_path, 'w', newline='') as electionResultsFile:
+    electionResultsFile.write("Election Results\n")
+    electionResultsFile.write("-------------------------\n")
+    electionResultsFile.write(f'Total Votes: {totalVotes}\n')
+    electionResultsFile.write("-------------------------\n")
+    electionResultsFile.write(f'{candidates[0]}: {candidate1Percent}% ({candidate1})\n')
+    electionResultsFile.write(f'{candidates[1]}: {candidate2Percent}% ({candidate2})\n')
+    electionResultsFile.write(f'{candidates[2]}: {candidate3Percent}% ({candidate3})\n')
+    electionResultsFile.write(f'{candidates[3]}: {candidate4Percent}% ({candidate4})\n')
+    electionResultsFile.write("-------------------------\n")
+    electionResultsFile.write(f'Winner: {winner}\n')
+    electionResultsFile.write("-------------------------")
 
 
         
