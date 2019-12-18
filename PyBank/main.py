@@ -12,16 +12,16 @@ with open(csvpath, newline='') as budgetFile:
     totalMoney = 0.0
     
 
-    #data= {}
+
     values = []
     monies = 0
     for row in csvreader:
         totalMoney += float(row[1])
         totalMonths += 1
         values.append(row[1])
-        #data = {row[0]:row[1] for row in csvreader}
-
-    
+    totalMoney = "{:.0f}".format(totalMoney)
+        
+    # finding average profit/loss
     for item in values[::-1]:
         a = len(values)-1
         
@@ -32,39 +32,28 @@ with open(csvpath, newline='') as budgetFile:
             averageProfLoss = "{:.2f}".format(monies/(totalMonths-1))
         break
 
-    money = float(item)  #money doens't change, so this needs to be moved and/or updated somehow
-    dec = 0 #money - float(values[a-1])
+    #finding greatest decrease in profits
+    money = float(item) 
+    greatDecr = 0.0
+    greatIncr = 0
     a = 0
-    for item2 in values:
-
-        print(f'{a} loops money= {money}')
-        if money-float(values[a-1]) < dec:
-            dec = money-float(values[a-1])
+    for item2 in values[::-1]:
+        if money-float(values[a-1]) < greatDecr:
+            greatDecr = money-float(values[a-1])
         else:
-            dec = dec
-        a+=1
+            greatDecr = greatDecr
 
 
- 
-    #print(averageProfLoss)
-    #print("{:.0f}".format(totalMoney))
-    #print(totalMonths)
+        if money-float(values[a-1])> greatIncr:
+            greatIncr = money-float(values[a-1])
+        else:
+            greatIncr = greatIncr
 
+        a-=1
+        money = float(values[a])
+    greatDecr = "{:.0f}".format(greatDecr)
+    greatIncr = "{:.0f}".format(greatIncr)
 
-    
-
-        
-
-'''
-for x in data:
-    totalMonths +=1
-    totalMoney += float(x[1])
-    greatProfits = float(x[1])
-    if float(x[1])>:
-        greatProfits = float(x[2][1])-float(x[1])
-    else:
-        greatProfits = greatProfits
-'''
 
 
 
